@@ -138,3 +138,232 @@ document.getElementById('remove-element-btn').addEventListener('click', function
 
 
 </body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Advanced Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            margin: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 1px solid black;
+            display: inline-block;
+        }
+        .ball {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: relative;
+        }
+        #drag-area {
+            width: 300px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+        }
+        #drop-zone {
+            width: 300px;
+            height: 150px;
+            border: 2px solid green;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9ffe9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Advanced Concepts</h1>
+        
+        <h2>Mouse Events</h2>
+        <div class="box" id="mouse-box">Hover Me</div>
+        <pre><code>
+// Mouse Events
+const mouseBox = document.getElementById('mouse-box');
+mouseBox.addEventListener('mouseover', () => {
+    mouseBox.style.backgroundColor = 'yellow';
+});
+mouseBox.addEventListener('mouseout', () => {
+    mouseBox.style.backgroundColor = 'lightblue';
+});
+mouseBox.addEventListener('click', () => {
+    alert('Box clicked!');
+});
+        </code></pre>
+
+        <h2>Forms Handling</h2>
+        <form id="example-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="form-result"></p>
+        <pre><code>
+// Form Handling
+document.getElementById('example-form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent form submission
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    document.getElementById('form-result').textContent = `Hello, ${name}. Your email is ${email}.`;
+});
+        </code></pre>
+
+        <h2>Simple Animation (Ball Rolling)</h2>
+        <div class="ball" id="ball"></div>
+        <button id="roll-button">Roll</button>
+        <pre><code>
+// Ball Rolling Animation
+document.getElementById('roll-button').addEventListener('click', () => {
+    const ball = document.getElementById('ball');
+    let position = 0;
+    const interval = setInterval(() => {
+        if (position >= 300) {
+            clearInterval(interval);
+        } else {
+            position += 5;
+            ball.style.left = position + 'px';
+        }
+    }, 20);
+});
+        </code></pre>
+
+        <h2>Geolocation</h2>
+        <button id="geo-button">Get Location</button>
+        <p id="geo-result"></p>
+        <pre><code>
+// Geolocation
+document.getElementById('geo-button').addEventListener('click', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            document.getElementById('geo-result').textContent = 
+                `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+        }, () => {
+            alert('Unable to retrieve location.');
+        });
+    } else {
+        alert('Geolocation is not supported by your browser.');
+    }
+});
+        </code></pre>
+
+        <h2>Drag and Drop</h2>
+        <div id="drag-area" draggable="true">Drag Me</div>
+        <div id="drop-zone">Drop Here</div>
+        <pre><code>
+// Drag and Drop
+const dragArea = document.getElementById('drag-area');
+const dropZone = document.getElementById('drop-zone');
+
+dragArea.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('text', 'Dragged Item');
+});
+
+dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault(); // Allow drop
+});
+
+dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('text');
+    dropZone.textContent = `You dropped: ${data}`;
+});
+        </code></pre>
+    </div>
+
+    <script>
+        // Mouse Events
+        const mouseBox = document.getElementById('mouse-box');
+        mouseBox.addEventListener('mouseover', () => {
+            mouseBox.style.backgroundColor = 'yellow';
+        });
+        mouseBox.addEventListener('mouseout', () => {
+            mouseBox.style.backgroundColor = 'lightblue';
+        });
+        mouseBox.addEventListener('click', () => {
+            alert('Box clicked!');
+        });
+
+        // Form Handling
+        document.getElementById('example-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            document.getElementById('form-result').textContent = `Hello, ${name}. Your email is ${email}.`;
+        });
+
+        // Ball Rolling Animation
+        document.getElementById('roll-button').addEventListener('click', () => {
+            const ball = document.getElementById('ball');
+            let position = 0;
+            const interval = setInterval(() => {
+                if (position >= 300) {
+                    clearInterval(interval);
+                } else {
+                    position += 5;
+                    ball.style.left = position + 'px';
+                }
+            }, 20);
+        });
+
+        // Geolocation
+        document.getElementById('geo-button').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    document.getElementById('geo-result').textContent =
+                        `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+                }, () => {
+                    alert('Unable to retrieve location.');
+                });
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        });
+
+        // Drag and Drop
+        const dragArea = document.getElementById('drag-area');
+        const dropZone = document.getElementById('drop-zone');
+
+        dragArea.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text', 'Dragged Item');
+        });
+
+        dropZone.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+
+        dropZone.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const data = event.dataTransfer.getData('text');
+            dropZone.textContent = `You dropped: ${data}`;
+        });
+    </script>
+</body>
+</html>
+
