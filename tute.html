@@ -1,0 +1,140 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Tutorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            margin: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .box {
+            width: 150px;
+            height: 50px;
+            border: 1px solid black;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript DOM Tutorial</h1>
+        <p>The DOM (Document Object Model) allows JavaScript to interact with HTML and CSS. Below are some key concepts:</p>
+
+        <h2>Working Buttons and JavaScript Code</h2>
+
+        <h3>Manipulating Content</h3>
+        <div id="content-div">Original Content</div>
+        <button id="change-content-btn">Change Content</button>
+        <pre><code>
+// Change content of an element
+document.getElementById('change-content-btn').addEventListener('click', function() {
+    const contentDiv = document.getElementById('content-div');
+    contentDiv.innerHTML = 'Updated <b>Content</b>';
+});
+        </code></pre>
+
+        <h3>Creating and Appending Elements</h3>
+        <button id="add-element-btn">Add Element</button>
+        <div id="element-container"></div>
+        <pre><code>
+// Create and append a new element
+document.getElementById('add-element-btn').addEventListener('click', function() {
+    const container = document.getElementById('element-container');
+    const newElement = document.createElement('p');
+    newElement.textContent = 'This is a dynamically created paragraph.';
+    container.appendChild(newElement);
+});
+        </code></pre>
+
+        <h3>Modifying Styles</h3>
+        <div id="style-box" class="box">Style Me!</div>
+        <button id="change-style-btn">Change Style</button>
+        <pre><code>
+// Change the style of an element
+document.getElementById('change-style-btn').addEventListener('click', function() {
+    const box = document.getElementById('style-box');
+    box.style.backgroundColor = 'lightblue';
+    box.style.color = 'white';
+    box.style.padding = '10px';
+});
+        </code></pre>
+
+        <h3>Handling Events</h3>
+        <button id="event-button">Click Me</button>
+        <pre><code>
+// Add an event listener to the button
+document.getElementById('event-button').addEventListener('click', function() {
+    alert('Button Clicked!');
+});
+        </code></pre>
+
+        <h3>Removing Elements</h3>
+        <div id="remove-me">Remove Me!</div>
+        <button id="remove-element-btn">Remove Element</button>
+        <pre><code>
+// Remove an element
+document.getElementById('remove-element-btn').addEventListener('click', function() {
+    const element = document.getElementById('remove-me');
+    if (element) {
+        element.remove(); // Modern way
+    } else {
+        alert('Element already removed!');
+    }
+});
+        </code></pre>
+    </div>
+
+    <script>
+        // Change content of an element
+        document.getElementById('change-content-btn').addEventListener('click', function() {
+            const contentDiv = document.getElementById('content-div');
+            contentDiv.innerHTML = 'Updated <b>Content</b>';
+        });
+
+        // Create and append a new element
+        document.getElementById('add-element-btn').addEventListener('click', function() {
+            const container = document.getElementById('element-container');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'This is a dynamically created paragraph.';
+            container.appendChild(newElement);
+        });
+
+        // Change the style of an element
+        document.getElementById('change-style-btn').addEventListener('click', function() {
+            const box = document.getElementById('style-box');
+            box.style.backgroundColor = 'lightblue';
+            box.style.color = 'white';
+            box.style.padding = '10px';
+        });
+
+        // Add an event listener to the button
+        document.getElementById('event-button').addEventListener('click', function() {
+            alert('Button Clicked!');
+        });
+
+        // Remove an element
+        document.getElementById('remove-element-btn').addEventListener('click', function() {
+            const element = document.getElementById('remove-me');
+            if (element) {
+                element.remove(); // Modern way
+            } else {
+                alert('Element already removed!');
+            }
+        });
+    </script>
+
+
+</body></html>
